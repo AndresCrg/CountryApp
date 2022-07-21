@@ -1,0 +1,29 @@
+<div class="container" class="animate__animated animate__fadeIn animate__faster">
+  <h2>Por país</h2>
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <app-country-input (onEnter)="search($event)" (onDebounce)="suggestions( $event )" placeholder="Buscar país"></app-country-input>
+    </div>
+  </div>
+  <ul class="list-group">
+    <li *ngFor="let country of suggestCountries" class="list-group-item list-group-item-action">
+      <a class="nav-link" [routerLink]="['/country', country.cca2]">
+        {{country.name.common}}
+      </a>
+    </li>
+  </ul>
+  <hr>
+</div>
+
+
+<div *ngIf="isError" class="alert alert-danger">
+  No se encontró nada con el término {{termino}}
+</div>
+
+<div class="row">
+  <div class="col">
+    <app-country-table [data]="countries"></app-country-table>
+  </div>
+</div>
